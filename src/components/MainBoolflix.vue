@@ -1,6 +1,8 @@
 <template>
   <main>
-    <h1 v-if="ArrayData.length == 0" class="intro">Cerca Qualcosa</h1>
+    <h1 v-if="ArrayData == null || ArrayData.length == 0" class="intro">
+      Cerca Qualcosa
+    </h1>
     <div v-else>
       <h1 class="text-center pt-5 rosso">MOVIES</h1>
       <div class="row gap-5 text-center justify-content-center pb-5">

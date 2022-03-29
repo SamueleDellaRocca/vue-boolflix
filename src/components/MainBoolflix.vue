@@ -1,5 +1,6 @@
 <template>
   <main>
+    <h1 class="text-center pt-5 rosso">MOVIES</h1>
     <div class="row gap-5 text-center justify-content-center pb-5">
       <card-film
         v-for="cartaFilm in ArrayData"
@@ -27,7 +28,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 main {
   min-height: calc(100vh - 100px);
   background-color: darkgray;
@@ -35,5 +36,10 @@ main {
 
 .row {
   --bs-gutter-x: 0rem !important;
+}
+
+.rosso {
+  color: black;
+  font-size: 4rem;
 }
 </style>

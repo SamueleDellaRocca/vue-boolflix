@@ -51,7 +51,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .row {
   --bs-gutter-x: 0rem;
 }

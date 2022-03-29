@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="row gap-5 text-center justify-content-center">
+    <div class="row gap-5 text-center justify-content-center pb-5">
       <card-film
         v-for="cartaFilm in ArrayData"
         :key="cartaFilm.id"

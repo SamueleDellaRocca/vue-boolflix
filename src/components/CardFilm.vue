@@ -1,5 +1,5 @@
 <template>
-  <div class="col-2 card mt-5">
+  <div class="col-2 card mt-5 carta-film">
     <h1>{{ CartaFilmData.title }}</h1>
     <h2>{{ CartaFilmData.original_title }}</h2>
     <h3>{{ CartaFilmData.original_language }}</h3>
@@ -17,4 +17,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.carta-film {
+  background-color: black;
+  color: white;
+}
+</style>

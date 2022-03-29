@@ -55,8 +55,7 @@ export default {
             console.log(responseSerieTv);
             this.arraySerieTV = responseSerieTv.data.results;
             this.$emit("passaSerie", this.arraySerieTV);
-            console.log(this.arrayFilmProva);
-            console.log(this.arraySerieTV);
+            this.filmRicercato = "";
           });
       }
     },

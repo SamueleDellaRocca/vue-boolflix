@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <header-boolflix @ricerca="funzioneRicerca" />
-    <main-boolflix :film-ricercato="filmRicercato" />
+    <header-boolflix @passaApi="funzioneApi" />
+    <main-boolflix :array-data="arrayFilmProva" />
   </div>
 </template>
 
@@ -18,13 +18,13 @@ export default {
 
   data() {
     return {
-      filmRicercato: "",
+      arrayFilmProva: null,
     };
   },
 
   methods: {
-    funzioneRicerca(filmRicercato) {
-      this.filmRicercato = filmRicercato;
+    funzioneApi(arrayFilmProva) {
+      this.arrayFilmProva = arrayFilmProva;
     },
   },
 };

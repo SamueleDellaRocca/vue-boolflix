@@ -31,17 +31,21 @@ export default {
 
   methods: {
     funzioneApi() {
-      axios
-        .get(
-          `https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=${this.filmRicercato}`,
-          console.log(this.FilmRicercato)
-        )
-        .then((response) => {
-          console.log(response);
-          this.arrayFilmProva = response.data.results;
-          this.$emit("passaApi", this.arrayFilmProva);
-          this.filmRicercato = "";
-        });
+      if (this.filmRicercato.trim() == "") {
+        this.arrayFilmProva = [];
+      } else {
+        axios
+          .get(
+            `https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=${this.filmRicercato}`,
+            console.log(this.FilmRicercato)
+          )
+          .then((response) => {
+            console.log(response);
+            this.arrayFilmProva = response.data.results;
+            this.$emit("passaApi", this.arrayFilmProva);
+            this.filmRicercato = "";
+          });
+      }
     },
   },
 };

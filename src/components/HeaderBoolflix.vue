@@ -11,12 +11,7 @@
         placeholder="Cerca il tuo film preferito"
         class="m-1 padd1"
       />
-      <button
-        @click="funzioneApi(), $emit('passaApi', arrayFilmProva)"
-        class="padd rosso"
-      >
-        Cerca
-      </button>
+      <button @click="funzioneApi()" class="padd rosso">Cerca</button>
     </div>
   </div>
 </template>
@@ -44,6 +39,8 @@ export default {
         .then((response) => {
           console.log(response);
           this.arrayFilmProva = response.data.results;
+          this.$emit("passaApi", this.arrayFilmProva);
+          this.filmRicercato = "";
         });
     },
   },

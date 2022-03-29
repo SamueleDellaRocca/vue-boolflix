@@ -5,7 +5,7 @@
     <h1 class="text-red">Boolflix</h1>
     <div>
       <input
-        @keyup.enter="funzioneApi(), $emit('passaApi', arrayFilmProva)"
+        @keyup.enter="funzioneApi()"
         v-model="filmRicercato"
         type="text"
         placeholder="Cerca il tuo film preferito"
@@ -33,6 +33,7 @@ export default {
     funzioneApi() {
       if (this.filmRicercato.trim() == "") {
         this.arrayFilmProva = [];
+        this.$emit("passaApi", this.arrayFilmProva);
       } else {
         axios
           .get(

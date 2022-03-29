@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <header-boolflix @passaApi="funzioneApi" />
-    <main-boolflix :array-data="arrayFilmProva" />
+    <header-boolflix @passaApi="funzioneApi" @passaSerie="funzioneSerie" />
+    <main-boolflix :array-data="arrayFilmProva" :array-serie="arraySerieTV" />
   </div>
 </template>
 
@@ -19,12 +19,17 @@ export default {
   data() {
     return {
       arrayFilmProva: null,
+      arraySerieTV: null,
     };
   },
 
   methods: {
     funzioneApi(arrayFilmProva) {
       this.arrayFilmProva = arrayFilmProva;
+    },
+
+    funzioneSerie(arraySerieTV) {
+      this.arraySerieTV = arraySerieTV;
     },
   },
 };

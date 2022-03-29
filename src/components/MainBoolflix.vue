@@ -12,15 +12,28 @@
           :carta-film-data="cartaFilm"
         />
       </div>
+
+      <h1 class="text-center pt-5 rosso">SERIES</h1>
+      <div class="row gap-5 text-center justify-content-center pb-5">
+        <carta-serie
+          v-for="cartaSerie in ArraySerie"
+          :key="cartaSerie.id"
+          :carta-serie-data="cartaSerie"
+        />
+      </div>
     </div>
   </main>
 </template>
 
 <script>
 import CardFilm from "./CardFilm.vue";
+import CartaSerie from "./CartaSerie.vue";
 
 export default {
-  components: { CardFilm },
+  components: {
+    CardFilm,
+    CartaSerie,
+  },
   name: "MainBoolflix",
 
   data() {
@@ -29,6 +42,7 @@ export default {
 
   props: {
     ArrayData: Array,
+    ArraySerie: Array,
   },
 };
 </script>

@@ -26,6 +26,7 @@ export default {
     return {
       filmRicercato: "",
       arrayFilmProva: null,
+      arraySerieTV: null,
     };
   },
 
@@ -37,14 +38,25 @@ export default {
       } else {
         axios
           .get(
-            `https://api.themoviedb.org/3/search/movie?api_key=e99307154c6dfb0b4750f6603256716d&query=${this.filmRicercato}`,
-            console.log(this.FilmRicercato)
+            `https://api.themoviedb.org/3/search/movie?api_key=5bbb62e6d70ca4e59aa9a9931e821fce&query=${this.filmRicercato}`
           )
           .then((response) => {
-            console.log(response);
             this.arrayFilmProva = response.data.results;
             this.$emit("passaApi", this.arrayFilmProva);
-            this.filmRicercato = "";
+            console.log(response);
+          })
+
+          .then(() =>
+            axios.get(
+              `https://api.themoviedb.org/3/search/tv?api_key=5bbb62e6d70ca4e59aa9a9931e821fce&language=it_IT&query=${this.filmRicercato}`
+            )
+          )
+          .then((responseSerieTv) => {
+            console.log(responseSerieTv);
+            this.arraySerieTV = responseSerieTv.data.results;
+            this.$emit("passaSerie", this.arraySerieTV);
+            console.log(this.arrayFilmProva);
+            console.log(this.arraySerieTV);
           });
       }
     },

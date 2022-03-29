@@ -1,11 +1,18 @@
 <template>
-  <div class="col-2 card mt-5 carta-serie">
-    <h1>{{ CartaSerieData.name }}</h1>
-    <h2>{{ CartaSerieData.original_name }}</h2>
-    <h3>
-      <lang-flag :iso="CartaSerieData.original_language" :squared="false" />
-    </h3>
-    <h4>{{ CartaSerieData.vote_average }}</h4>
+  <div class="col-2 card mt-5 carta-serie position-relative p-1">
+    <img
+      v-show="CartaSerieData.poster_path != null"
+      :src="`https://image.tmdb.org/t/p/w342${CartaSerieData.poster_path}`"
+      :alt="CartaSerieData.original_title"
+    />
+    <div class="assoluto">
+      <h3>{{ CartaSerieData.name }}</h3>
+      <div>{{ CartaSerieData.original_name }}</div>
+      <div>
+        <lang-flag :iso="CartaSerieData.original_language" :squared="false" />
+      </div>
+      <div>{{ CartaSerieData.vote_average }}</div>
+    </div>
   </div>
 </template>
 
@@ -29,5 +36,26 @@ export default {
 .carta-serie {
   background-color: black;
   color: white;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+.carta-serie:hover img {
+  z-index: -1;
+}
+
+.assoluto {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  div {
+    font-size: 1.3rem;
+  }
 }
 </style>

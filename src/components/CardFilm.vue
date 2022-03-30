@@ -55,7 +55,7 @@ img {
   top: 50%;
   transform: translate(-50%, -50%);
   div {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 }
 </style>

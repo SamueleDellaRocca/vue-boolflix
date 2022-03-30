@@ -45,7 +45,8 @@ img {
 }
 
 .carta-serie:hover img {
-  z-index: -1;
+  transition: 1s;
+  opacity: 0;
 }
 
 .assoluto {

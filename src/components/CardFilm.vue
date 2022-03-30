@@ -12,6 +12,9 @@
         <lang-flag :iso="CartaFilmData.original_language" :squared="false" />
       </div>
       <div>{{ CartaFilmData.vote_average }}</div>
+      <span v-for="(element, index) in funzioneStelle()" :key="index"
+        >&#11088;</span
+      >
     </div>
   </div>
 </template>
@@ -21,6 +24,25 @@ import LangFlag from "vue-lang-code-flags";
 
 export default {
   name: "CartaFilm",
+
+  data() {
+    return {};
+  },
+
+  methods: {
+    funzioneStelle() {
+      let ArrayStelle = [];
+      for (
+        let index = 0;
+        index < Math.floor(this.CartaFilmData.vote_average) / 2;
+        index++
+      ) {
+        ArrayStelle.push(index);
+      }
+      console.log(ArrayStelle);
+      return ArrayStelle;
+    },
+  },
 
   props: {
     CartaFilmData: Object,

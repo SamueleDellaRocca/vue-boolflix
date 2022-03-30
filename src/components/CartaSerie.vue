@@ -6,7 +6,7 @@
       :alt="CartaSerieData.original_title"
     />
     <div class="assoluto">
-      <h3>{{ CartaSerieData.name }}</h3>
+      <h4>{{ CartaSerieData.name }}</h4>
       <div>{{ CartaSerieData.original_name }}</div>
       <div>
         <lang-flag :iso="CartaSerieData.original_language" :squared="false" />
@@ -35,7 +35,6 @@ export default {
       ) {
         ArrayStelle.push(index);
       }
-      console.log(ArrayStelle);
       return ArrayStelle;
     },
   },
@@ -68,7 +67,7 @@ img {
 }
 
 .assoluto {
-  width: 100%;
+  width: 95%;
   position: absolute;
   left: 50%;
   top: 50%;

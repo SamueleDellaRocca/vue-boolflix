@@ -6,7 +6,7 @@
       :alt="CartaFilmData.original_title"
     />
     <div class="assoluto">
-      <h3>{{ CartaFilmData.title }}</h3>
+      <h4>{{ CartaFilmData.title }}</h4>
       <div>{{ CartaFilmData.original_title }}</div>
       <div>
         <lang-flag :iso="CartaFilmData.original_language" :squared="false" />
@@ -15,18 +15,25 @@
       <span v-for="(element, index) in funzioneStelle()" :key="index"
         >&#11088;</span
       >
+      <div v-for="attore in funzioneChiamataAttori()" :key="attore.id">
+        {{ attore.name }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import LangFlag from "vue-lang-code-flags";
+import axios from "axios";
 
 export default {
   name: "CartaFilm",
 
   data() {
-    return {};
+    return {
+      arrayAttori: null,
+      arrayAttoriFiltrato: null,
+    };
   },
 
   methods: {
@@ -39,8 +46,21 @@ export default {
       ) {
         ArrayStelle.push(index);
       }
-      console.log(ArrayStelle);
       return ArrayStelle;
+    },
+
+    funzioneChiamataAttori() {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${this.CartaFilmData.id}/credits?api_key=5bbb62e6d70ca4e59aa9a9931e821fce&language=en-US`
+        )
+        .then((response) => {
+          this.arrayAttori = response.data.cast;
+          console.log(response);
+        });
+      this.arrayAttori.length = 5;
+      console.log(this.arrayAttori);
+      return this.arrayAttori;
     },
   },
 
@@ -72,7 +92,7 @@ img {
 }
 
 .assoluto {
-  width: 100%;
+  width: 95%;
   position: absolute;
   left: 50%;
   top: 50%;

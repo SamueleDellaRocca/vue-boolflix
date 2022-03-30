@@ -15,15 +15,26 @@
       <span v-for="(element, index) in funzioneStelle()" :key="index"
         >&#11088;</span
       >
+      <div v-for="attore in funzioneChiamataAttori()" :key="attore.id">
+        {{ attore.name }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import LangFlag from "vue-lang-code-flags";
+import axios from "axios";
 
 export default {
   name: "CartaSerie",
+
+  data() {
+    return {
+      arrayAttori: null,
+      arrayAttoriFiltrato: null,
+    };
+  },
 
   methods: {
     funzioneStelle() {
@@ -36,6 +47,20 @@ export default {
         ArrayStelle.push(index);
       }
       return ArrayStelle;
+    },
+
+    funzioneChiamataAttori() {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/tv/${this.CartaSerieData.id}/credits?api_key=5bbb62e6d70ca4e59aa9a9931e821fce&language=en-US`
+        )
+        .then((response) => {
+          this.arrayAttori = response.data.cast;
+          console.log(response);
+        });
+      this.arrayAttori.length = 5;
+      console.log(this.arrayAttori);
+      return this.arrayAttori;
     },
   },
 

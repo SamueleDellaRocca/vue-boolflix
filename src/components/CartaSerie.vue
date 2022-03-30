@@ -15,7 +15,7 @@
       <span v-for="(element, index) in funzioneStelle()" :key="index"
         >&#11088;</span
       >
-      <div v-for="attore in funzioneChiamataAttori()" :key="attore.id">
+      <div v-for="attore in funzioneChiamataAttori" :key="attore.id">
         {{ attore.name }}
       </div>
     </div>
@@ -32,7 +32,6 @@ export default {
   data() {
     return {
       arrayAttori: null,
-      arrayAttoriFiltrato: null,
     };
   },
 

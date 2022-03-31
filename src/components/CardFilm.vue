@@ -1,5 +1,5 @@
 <template>
-  <div class="col-2 card mt-5 carta-film position-relative p-1">
+  <div class="col-6 card mt-5 carta-film position-relative p-1">
     <img
       v-if="CartaFilmData.poster_path != null"
       :src="`https://image.tmdb.org/t/p/w342${CartaFilmData.poster_path}`"
@@ -12,10 +12,11 @@
         <lang-flag :iso="CartaFilmData.original_language" :squared="false" />
       </div>
       <div>{{ CartaFilmData.vote_average }}</div>
-      <span v-for="(element, index) in funzioneStelle()" :key="index"
+      <span v-for="(element, index) in funzioneStelle()" :key="'stella' + index"
         >&#11088;</span
       >
-      <div v-for="attore in funzioneChiamataAttori" :key="attore.id">
+      <br />
+      <div v-for="attore in arrayAttori" :key="attore.cast_id">
         {{ attore.name }}
       </div>
     </div>
@@ -47,23 +48,20 @@ export default {
       }
       return ArrayStelle;
     },
-
-    funzioneChiamataAttori() {
-      axios
-        .get(
-          `https://api.themoviedb.org/3/movie/${this.CartaFilmData.id}/credits?api_key=5bbb62e6d70ca4e59aa9a9931e821fce&language=en-US`
-        )
-        .then((response) => {
-          this.arrayAttori = response.data.cast;
-          console.log(response);
-        });
-      this.arrayAttori.length = 5;
-      console.log(this.arrayAttori);
-      return this.arrayAttori;
-    },
   },
 
-  mounted() {},
+  created() {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${this.CartaFilmData.id}/credits?api_key=5bbb62e6d70ca4e59aa9a9931e821fce&language=en-US`
+      )
+      .then((response) => {
+        this.arrayAttori = response.data.cast;
+      })
+      .then(() => {
+        this.arrayAttori.splice(5, this.arrayAttori.length - 5);
+      });
+  },
 
   props: {
     CartaFilmData: Object,
@@ -79,6 +77,8 @@ export default {
 .carta-film {
   background-color: black;
   color: white;
+  width: 260px;
+  height: 380px;
 }
 
 img {

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-2 card mt-5 carta-serie position-relative p-1">
+  <div class="card mt-5 carta-serie position-relative p-1">
     <img
       v-if="CartaSerieData.poster_path != null"
       :src="`https://image.tmdb.org/t/p/w342${CartaSerieData.poster_path}`"
@@ -15,7 +15,7 @@
       <span v-for="(element, index) in funzioneStelle()" :key="index"
         >&#11088;</span
       >
-      <div v-for="attore in funzioneChiamataAttori" :key="attore.id">
+      <div v-for="attore in arrayAttori" :key="attore.id">
         {{ attore.name }}
       </div>
     </div>
@@ -47,20 +47,19 @@ export default {
       }
       return ArrayStelle;
     },
+  },
 
-    funzioneChiamataAttori() {
-      axios
-        .get(
-          `https://api.themoviedb.org/3/tv/${this.CartaSerieData.id}/credits?api_key=5bbb62e6d70ca4e59aa9a9931e821fce&language=en-US`
-        )
-        .then((response) => {
-          this.arrayAttori = response.data.cast;
-          console.log(response);
-        });
-      this.arrayAttori.length = 5;
-      console.log(this.arrayAttori);
-      return this.arrayAttori;
-    },
+  created() {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/tv/${this.CartaSerieData.id}/credits?api_key=5bbb62e6d70ca4e59aa9a9931e821fce&language=en-US`
+      )
+      .then((response) => {
+        this.arrayAttori = response.data.cast;
+      })
+      .then(() => {
+        this.arrayAttori.splice(5, this.arrayAttori.length - 5);
+      });
   },
 
   props: {
@@ -77,6 +76,8 @@ export default {
 .carta-serie {
   background-color: black;
   color: white;
+  width: 260px;
+  height: 380px;
 }
 
 img {

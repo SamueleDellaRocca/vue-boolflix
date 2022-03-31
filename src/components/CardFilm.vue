@@ -12,7 +12,7 @@
         <lang-flag :iso="CartaFilmData.original_language" :squared="false" />
       </div>
       <div>{{ CartaFilmData.vote_average }}</div>
-      <span v-for="(element, index) in funzioneStelle" :key="index"
+      <span v-for="(element, index) in funzioneStelle()" :key="index"
         >&#11088;</span
       >
       <div v-for="attore in funzioneChiamataAttori" :key="attore.id">

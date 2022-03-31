@@ -94,11 +94,6 @@ img {
 .assoluto {
   width: 95%;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  div {
-    font-size: 1.2rem;
-  }
+  top: 10px;
 }
 </style>

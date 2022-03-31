@@ -5,6 +5,11 @@
       :src="`https://image.tmdb.org/t/p/w342${CartaFilmData.poster_path}`"
       :alt="CartaFilmData.original_title"
     />
+    <img
+      v-else
+      src="https://thumbs.dreamstime.com/b/movie-film-company-logo-design-vector-template-movie-film-company-logo-design-inspiration-vector-template-167661473.jpg"
+      alt="logo-film"
+    />
     <div class="assoluto">
       <h4>{{ CartaFilmData.title }}</h4>
       <div>{{ CartaFilmData.original_title }}</div>
@@ -18,6 +23,12 @@
       <br />
       <div v-for="attore in arrayAttori" :key="attore.cast_id">
         {{ attore.name }}
+      </div>
+      <div v-if="CartaFilmData.overview !== ''">
+        <button @click="funzioneVisible" class="btn_trama">TRAMA</button>
+      </div>
+      <div v-if="visibilita" class="trama">
+        {{ CartaFilmData.overview }}
       </div>
     </div>
   </div>
@@ -33,6 +44,7 @@ export default {
   data() {
     return {
       arrayAttori: null,
+      visibilita: false,
     };
   },
 
@@ -47,6 +59,14 @@ export default {
         ArrayStelle.push(index);
       }
       return ArrayStelle;
+    },
+
+    funzioneVisible() {
+      if (this.visibilita == false) {
+        this.visibilita = true;
+      } else {
+        this.visibilita = false;
+      }
     },
   },
 
@@ -84,22 +104,40 @@ export default {
 img {
   width: 100%;
   height: 100%;
-  z-index: 3;
 }
 
 .carta-film:hover img {
-  transition: 1s;
-  opacity: 0;
+  display: none;
+}
+
+.carta-film:hover .assoluto {
+  display: block;
 }
 
 .assoluto {
-  width: 95%;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  div {
-    font-size: 1.2rem;
-  }
+  width: 100%;
+  top: 10px;
+  left: 0px;
+  display: none;
+  z-index: 100;
+}
+
+.btn_trama {
+  margin-top: 15px;
+  background-color: red;
+  border: 1px solid black;
+  padding: 5px 15px;
+  font-weight: bold;
+  position: relative;
+}
+
+.trama {
+  background-color: black;
+  color: white;
+  padding: 25px;
+  width: 100%;
+  max-height: 200px;
+  overflow: auto;
 }
 </style>

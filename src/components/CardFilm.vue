@@ -1,7 +1,7 @@
 <template>
   <div class="col-2 card mt-5 carta-film position-relative p-1">
     <img
-      v-show="CartaFilmData.poster_path != null"
+      v-if="CartaFilmData.poster_path != null"
       :src="`https://image.tmdb.org/t/p/w342${CartaFilmData.poster_path}`"
       :alt="CartaFilmData.original_title"
     />
@@ -12,7 +12,7 @@
         <lang-flag :iso="CartaFilmData.original_language" :squared="false" />
       </div>
       <div>{{ CartaFilmData.vote_average }}</div>
-      <span v-for="(element, index) in funzioneStelle()" :key="index"
+      <span v-for="(element, index) in funzioneStelle" :key="index"
         >&#11088;</span
       >
       <div v-for="attore in funzioneChiamataAttori" :key="attore.id">
@@ -62,6 +62,8 @@ export default {
       return this.arrayAttori;
     },
   },
+
+  mounted() {},
 
   props: {
     CartaFilmData: Object,

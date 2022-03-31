@@ -1,7 +1,7 @@
 <template>
   <div class="col-2 card mt-5 carta-serie position-relative p-1">
     <img
-      v-show="CartaSerieData.poster_path != null"
+      v-if="CartaSerieData.poster_path != null"
       :src="`https://image.tmdb.org/t/p/w342${CartaSerieData.poster_path}`"
       :alt="CartaSerieData.original_title"
     />

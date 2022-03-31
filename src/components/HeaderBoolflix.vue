@@ -43,7 +43,6 @@ export default {
           .then((response) => {
             this.arrayFilmProva = response.data.results;
             this.$emit("passaApi", this.arrayFilmProva);
-            console.log(response);
           })
 
           .then(() =>
@@ -52,7 +51,6 @@ export default {
             )
           )
           .then((responseSerieTv) => {
-            console.log(responseSerieTv);
             this.arraySerieTV = responseSerieTv.data.results;
             this.$emit("passaSerie", this.arraySerieTV);
             this.filmRicercato = "";

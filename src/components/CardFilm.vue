@@ -11,7 +11,7 @@
       alt="logo-film"
     />
     <div class="assoluto">
-      <h4>{{ CartaFilmData.title }}</h4>
+      <h5>{{ CartaFilmData.title }}</h5>
       <div>{{ CartaFilmData.original_title }}</div>
       <div>
         <lang-flag :iso="CartaFilmData.original_language" :squared="false" />
